@@ -11,7 +11,9 @@ const PricingPage = lazy(() => import('./app/pages/PricingPage'));
 const PrivacyPolicy = lazy(() => import('./app/pages/PrivacyPolicy'));
 const Security = lazy(() => import('./app/pages/Security'));
 const Terms = lazy(() => import('./app/pages/Terms'));
-const SignUp = lazy(() => import('./app/pages/SignUp'));
+const SignInPage = lazy(() => import('./app/pages/SignIn'));
+const SignUpPage = lazy(() => import('./app/pages/SignUp'));
+
 
 function App() {
   return (
@@ -28,7 +30,9 @@ function App() {
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="/security" element={<Security />} />
           <Route path="/terms" element={<Terms />} />
-          <Route path="/sign-up" element={<SignUp />} />
+          <Route path="/sign-in/*" element={<SignInPage />} />
+          <Route path="/sign-up/*" element={<SignUpPage />} />
+
         </Routes>
       </Suspense>
     </Router>

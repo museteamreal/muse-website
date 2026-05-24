@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Menu, X, ChevronDown, ChevronRight } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { SignedIn, SignedOut, UserButton } from '@clerk/clerk-react';
 
 type NavbarProps = {
   isScrolled?: boolean;
@@ -194,37 +195,50 @@ export default function Navbar({ isScrolled: _isScrolled = false, isPricingPage 
 
           {/* Right Cluster */}
           <div className="flex items-center gap-2 sm:gap-3 ml-auto md:ml-0">
-            <button
-              className="bg-[#fb8500] text-white rounded-full flex items-center gap-2 hover:bg-[#e87800]"
-              style={{
-                paddingLeft: '16px',
-                paddingRight: '6px',
-                paddingTop: '6px',
-                paddingBottom: '6px',
-                boxShadow: 'inset 0 1px 1px rgba(255,255,255,0.4), 0 2px 4px rgba(0,0,0,0.1)',
-                transition: 'all 800ms cubic-bezier(0.16, 1, 0.3, 1)',
-              }}
-            >
-              <span
-                className="font-medium"
+            <SignedOut>
+              <a href="/sign-in" className={`font-medium mr-2 transition-colors ${isScrolled ? 'text-gray-900 hover:text-black' : 'text-white/90 hover:text-white'}`}>
+                Sign in
+              </a>
+              <a
+                href="/sign-up"
+                className="bg-[#fb8500] text-white rounded-full flex items-center gap-2 hover:bg-[#e87800]"
                 style={{
-                  fontSize: '13px',
-                  transition: 'font-size 800ms cubic-bezier(0.16, 1, 0.3, 1)',
-                }}
-              >
-                Start Creating
-              </span>
-              <div
-                className="bg-white/20 rounded-full flex items-center justify-center shrink-0"
-                style={{
-                  width: '24px',
-                  height: '24px',
+                  paddingLeft: '16px',
+                  paddingRight: '6px',
+                  paddingTop: '6px',
+                  paddingBottom: '6px',
+                  boxShadow: 'inset 0 1px 1px rgba(255,255,255,0.4), 0 2px 4px rgba(0,0,0,0.1)',
                   transition: 'all 800ms cubic-bezier(0.16, 1, 0.3, 1)',
                 }}
               >
-                <ChevronRight className="w-3.5 h-3.5" />
-              </div>
-            </button>
+                <span
+                  className="font-medium"
+                  style={{
+                    fontSize: '13px',
+                    transition: 'font-size 800ms cubic-bezier(0.16, 1, 0.3, 1)',
+                  }}
+                >
+                  Start Creating
+                </span>
+                <div
+                  className="bg-white/20 rounded-full flex items-center justify-center shrink-0"
+                  style={{
+                    width: '24px',
+                    height: '24px',
+                    transition: 'all 800ms cubic-bezier(0.16, 1, 0.3, 1)',
+                  }}
+                >
+                  <ChevronRight className="w-3.5 h-3.5" />
+                </div>
+              </a>
+            </SignedOut>
+            
+            <SignedIn>
+              <a href="/dashboard" className={`font-medium mr-4 transition-colors ${isScrolled ? 'text-gray-900 hover:text-black' : 'text-white/90 hover:text-white'}`}>
+                Dashboard
+              </a>
+              <UserButton />
+            </SignedIn>
 
             {/* Mobile Menu Toggle */}
             <button 
