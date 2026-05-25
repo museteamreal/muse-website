@@ -217,8 +217,6 @@ export default function Sidebar() {
             >
               <Gift className="w-[18px] h-[18px] text-gray-600" strokeWidth={1.5} />
             </button>
-            <div className="relative mt-2 mb-2 w-full flex justify-center" ref={accountRef}>
-              <button
             <div className="mt-2 mb-2 w-full flex justify-center">
               <UserButton afterSignOutUrl="/" appearance={{ elements: { userButtonAvatarBox: "w-8 h-8" } }} />
             </div>
