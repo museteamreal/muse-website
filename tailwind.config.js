@@ -42,6 +42,20 @@ export default {
       boxShadow: {
         dashboard: "var(--shadow-dashboard)",
       },
+      keyframes: {
+        "marquee-left": {
+          from: { transform: "translateX(0)" },
+          to: { transform: "translateX(-50%)" },
+        },
+        "marquee-right": {
+          from: { transform: "translateX(-50%)" },
+          to: { transform: "translateX(0)" },
+        },
+      },
+      animation: {
+        "marquee-left": "marquee-left 25s linear infinite",
+        "marquee-right": "marquee-right 25s linear infinite",
+      },
     },
   },
   plugins: [require("tailwindcss-animate")],

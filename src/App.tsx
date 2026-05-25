@@ -1,5 +1,6 @@
 import { lazy, Suspense } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { SignedIn, SignedOut, RedirectToSignIn } from '@clerk/clerk-react';
 
 const Connect = lazy(() => import('./app/pages/Connect'));
 const ContactUs = lazy(() => import('./app/pages/ContactUs'));
@@ -20,12 +21,30 @@ function App() {
     <Router>
       <Suspense fallback={<div className="flex h-screen items-center justify-center">Loading...</div>}>
         <Routes>
-          <Route path="/" element={<Landing />} />
+          <Route path="/" element={
+            <>
+              <SignedIn>
+                <Navigate to="/dashboard" replace />
+              </SignedIn>
+              <SignedOut>
+                <Landing />
+              </SignedOut>
+            </>
+          } />
           <Route path="/landing21" element={<Landing21 />} />
           <Route path="/connect" element={<Connect />} />
           <Route path="/contact-us" element={<ContactUs />} />
           <Route path="/cookies" element={<Cookies />} />
-          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/dashboard/*" element={
+            <>
+              <SignedIn>
+                <Dashboard />
+              </SignedIn>
+              <SignedOut>
+                <RedirectToSignIn />
+              </SignedOut>
+            </>
+          } />
           <Route path="/pricing" element={<PricingPage />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="/security" element={<Security />} />

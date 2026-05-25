@@ -196,9 +196,6 @@ export default function Navbar({ isScrolled: _isScrolled = false, isPricingPage 
           {/* Right Cluster */}
           <div className="flex items-center gap-2 sm:gap-3 ml-auto md:ml-0">
             <SignedOut>
-              <a href="/sign-in" className={`font-medium mr-2 transition-colors ${isScrolled ? 'text-gray-900 hover:text-black' : 'text-white/90 hover:text-white'}`}>
-                Sign in
-              </a>
               <a
                 href="/sign-up"
                 className="bg-[#fb8500] text-white rounded-full flex items-center gap-2 hover:bg-[#e87800]"
